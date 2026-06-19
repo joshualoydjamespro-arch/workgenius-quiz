@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkGenius Quiz • Discover Your Working Geniuses</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap');
+  body { font-family: 'Inter', system_ui, sans-serif; }
+  .heading-serif { font-family: 'Playfair Display', Georgia, serif; }
+  .genius-gradient { background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%); }
+  .quiz-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .scale-btn { transition: all 0.15s ease; }
+  .scale-btn.selected { transform: scale(1.05); box-shadow: 0 10px 15px -3px rgb(67 56 202 / 0.2); }
+  .section-header { font-size: 1.1rem; letter-spacing: -.025em; }
+  .lang-bar { transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease; }
+  .result-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .result-card:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+  .genius-emoji { font-size: 3rem; line-height: 1; }
+  .question-text { font-size: 1.1rem; line-height: 1.5; }
+</style>
+</head>
+<body class="bg-zinc-50 text-zinc-800">
+<div class="max-w-3xl mx-auto min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-white border-b border-zinc-100 sticky top-0 z-50">
+    <div class="max-w-3xl mx-auto px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-x-3">
+        <div class="w-10 h-10 genius-gradient rounded-2xl flex items-center justify-center shadow-inner">
+          <i class="fa-solid fa-brain text-white text-2xl"></i>
+        </div>
+        <div>
+          <span class="font-semibold text-2xl tracking-tighter">WorkGenius</span>
+          <span class="text-xs font-medium text-zinc-400 tracking-[2px] block -mt-1">QUIZ</span>
+        </div>
+      </div>
+      <div class="text-xs px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-500 font-medium flex items-center gap-x-1.5">
+        <i class="fa-solid fa-clock text-xs"></i>
+        <span>6-8 min</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 px-5 pb-12">
+    <!-- LANDING VIEW -->
+    <div id="landing-view">
+      <div class="pt-10 pb-8 text-center">
+        <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium mb-6">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span>Based on Patrick Lencioni’s Six Types of Working Genius</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl font-semibold tracking-tighter heading-serif text-zinc-900 mb-3">Discover where you<br>thrive at work.</h1>
+        <p class="max-w-md mx-auto text-xl text-zinc-600">Find your two Working Geniuses, two Competencies, and two Frustrations. Understand what energizes you, what drains you, and how to build a more fulfilling career and better teams.</p>
+      </div>
+
+      <!-- 6 Types Preview -->
+      <div class="mb-10">
+        <p class="text-center text-sm font-medium text-zinc-500 mb-4 tracking-wider">THE SIX TYPES OF WORKING GENIUS</p>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">🌀</div>
+            <div class="text-xs font-semibold text-indigo-600">Wonder</div>
+          </div>
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">💡</div>
+            <div class="text-xs font-semibold text-amber-600">Invention</div>
+          </div>
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">🧠</div>
+            <div class="text-xs font-semibold text-teal-600">Discernment</div>
+          </div>
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">📣</div>
+            <div class="text-xs font-semibold text-rose-600">Galvanizing</div>
+          </div>
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">🤝</div>
+            <div class="text-xs font-semibold text-emerald-600">Enablement</div>
+          </div>
+          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
+            <div class="text-3xl mb-1.5">🏁</div>
+            <div class="text-xs font-semibold text-orange-600">Tenacity</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-xs mx-auto">
+        <button onclick="startQuiz()" 
+                class="w-full genius-gradient text-white font-semibold py-4 px-8 rounded-3xl text-lg flex items-center justify-center gap-x-3 shadow-lg shadow-indigo-500/30 active:scale-[0.985] transition-all">
+          <span>Start the Quiz</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <p class="text-center text-xs text-zinc-400 mt-4">24 quick questions • Instant detailed profile</p>
+      </div>
+
+      <div class="mt-10 text-center">
+        <button onclick="showInfoModal()" class="text-sm text-zinc-500 hover:text-zinc-700 flex items-center gap-x-2 mx-auto">
+          <i class="fa-solid fa-info-circle"></i>
+          <span>What is the Working Genius model?</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- QUIZ VIEW -->
+    <div id="quiz-view" class="hidden pt-6">
+      <div class="mb-6">
+        <!-- Progress -->
+        <div class="flex items-center justify-between mb-2 px-1">
+          <div class="flex items-baseline gap-x-2">
+            <span id="progress-text" class="font-mono text-sm font-semibold text-indigo-600">1 / 24</span>
+            <span class="text-xs text-zinc-400">QUESTIONS</span>
+          </div>
+          <div class="text-xs font-medium text-zinc-400" id="progress-percent">4%</div>
+        </div>
+        <div class="h-2.5 bg-zinc-100 rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-2.5 genius-gradient rounded-full transition-all duration-500" style="width: 4%"></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-xl shadow-zinc-200/60 border border-zinc-100 p-7 quiz-card">
+        <div class="mb-6">
+          <div class="uppercase tracking-[1.5px] text-xs font-semibold text-indigo-500 mb-2">QUESTION <span id="q-num">1</span> OF 24</div>
+          <h2 id="question-text" class="question-text font-semibold text-zinc-900 leading-tight"></h2>
+        </div>
+
+        <!-- Likert Scale -->
+        <div class="mb-2">
+          <div class="flex justify-between items-center mb-3 px-1">
+            <div class="text-xs font-medium text-zinc-400">Not at all<br>like me</div>
+            <div class="text-xs font-medium text-zinc-400 text-right">Very much<br>like me</div>
+          </div>
+          
+          <div id="scale-container" class="grid grid-cols-7 gap-2">
+            <!-- JS populated buttons 1-7 -->
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mt-8">
+          <button onclick="prevQuestion()" id="btn-prev"
+                  class="px-5 py-2.5 text-sm font-medium flex items-center gap-x-2 text-zinc-500 hover:text-zinc-700 disabled:opacity-40 transition-colors">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Back</span>
+          </button>
+          
+          <button onclick="nextQuestion()" id="btn-next"
+                  class="px-8 py-3 bg-zinc-900 hover:bg-black text-white text-sm font-semibold rounded-2xl flex items-center gap-x-2 disabled:opacity-50 transition-all active:scale-[0.985]">
+            <span id="next-text">Continue</span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <div class="inline-flex items-center text-xs text-zinc-400">
+          <i class="fa-solid fa-shield-halved mr-1.5"></i>
+          <span>Your answers are private and only used for your results</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS VIEW -->
+    <div id="results-view" class="hidden pt-6">
+      <div class="text-center mb-8">
+        <div class="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold tracking-wider mb-3">YOUR WORKING GENIUS PROFILE IS READY</div>
+        <h2 class="text-4xl font-semibold tracking-tighter heading-serif">Your Working<br>Genius Profile</h2>
+        <p class="text-zinc-500 mt-2">Two Geniuses • Two Competencies • Two Frustrations</p>
+      </div>
+
+      <!-- Two Geniuses -->
+      <div class="mb-6">
+        <div class="uppercase text-xs tracking-[1.5px] font-bold text-indigo-500 mb-3 px-1">YOUR TWO WORKING GENIUSES</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="geniuses-container">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Competencies & Frustrations -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Competencies -->
+        <div class="bg-white border border-zinc-100 rounded-3xl p-6">
+          <div class="uppercase text-xs tracking-wider font-bold text-emerald-600 mb-3">YOUR COMPETENCIES</div>
+          <div id="competencies-container" class="space-y-4">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Frustrations -->
+        <div class="bg-white border border-zinc-100 rounded-3xl p-6">
+          <div class="uppercase text-xs tracking-wider font-bold text-orange-600 mb-3">YOUR FRUSTRATIONS</div>
+          <div id="frustrations-container" class="space-y-4">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Visual Profile -->
+      <div class="bg-white border border-zinc-100 rounded-3xl p-6 mb-8">
+        <div class="flex items-center justify-between mb-4 px-1">
+          <div class="font-semibold text-sm">Your Complete Working Genius Profile</div>
+          <div class="text-xs text-zinc-400">Ranked by energy & fit</div>
+        </div>
+        <div id="score-bars" class="space-y-3.5">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Why It Matters -->
+      <div class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-3xl p-7 mb-8">
+        <div class="flex items-center gap-x-3 mb-4">
+          <i class="fa-solid fa-lightbulb text-indigo-400"></i>
+          <div class="font-semibold text-lg">Why Knowing Your Profile Changes Everything</div>
+        </div>
+        <div class="text-zinc-200 text-[15px] leading-relaxed space-y-4">
+          <p>Everyone has all six types to some degree, but you have <strong>two Geniuses</strong> where you thrive with natural energy and joy, <strong>two Competencies</strong> you can do well but that cost you energy, and <strong>two Frustrations</strong> that drain you significantly.</p>
+          <p class="font-medium">When you spend most of your time in your Geniuses, work feels fulfilling and sustainable. When you’re stuck in your Frustrations, burnout, disengagement, and frustration skyrocket — even if you’re “good” at the task.</p>
+          <p>The model’s power comes from teams: great teams have all six types represented. Knowing your profile (and others’) lets you play to strengths, delegate wisely, communicate needs, and build roles and teams where everyone thrives.</p>
+        </div>
+      </div>
+
+      <!-- Reflection Exercise -->
+      <div class="bg-white border border-zinc-100 rounded-3xl p-7 mb-8">
+        <div class="font-semibold text-lg mb-1 flex items-center gap-x-2">
+          <i class="fa-solid fa-pen-nib text-indigo-500"></i>
+          <span>Reflect & Activate</span>
+        </div>
+        <p class="text-sm text-zinc-500 mb-5">A powerful mental exercise to turn insight into action.</p>
+
+        <div class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">1. Imagine a typical week or project where you spend most of your time in your <span class="font-semibold text-indigo-600">two Geniuses</span>. How energized, fulfilled, and effective would you feel compared to now?</label>
+            <textarea id="reflect-genius" rows="3" class="w-full border border-zinc-200 focus:border-indigo-300 rounded-2xl p-4 text-sm placeholder:text-zinc-400" placeholder="When I’m in my Geniuses, I feel..."></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">2. Think of a key colleague, boss, or team member. What do you suspect are <span class="font-semibold">their</span> two Working Geniuses? How could you adjust how you work together to honor their strengths and protect them from their frustrations?</label>
+            <textarea id="reflect-other" rows="3" class="w-full border border-zinc-200 focus:border-indigo-300 rounded-2xl p-4 text-sm placeholder:text-zinc-400" placeholder="I think they thrive in... So I could..."></textarea>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="copyReflections()" 
+                  class="flex-1 py-3 text-sm font-semibold border border-zinc-200 hover:bg-zinc-50 rounded-2xl flex items-center justify-center gap-x-2 transition-colors">
+            <i class="fa-solid fa-copy"></i>
+            <span>Copy Reflections</span>
+          </button>
+          <button onclick="copyFullResults()" 
+                  class="flex-1 py-3 bg-zinc-900 hover:bg-black text-white text-sm font-semibold rounded-2xl flex items-center justify-center gap-x-2 transition-all">
+            <i class="fa-solid fa-share-alt"></i>
+            <span>Share Full Profile</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button onclick="retakeQuiz()" 
+                class="flex-1 py-4 text-sm font-semibold border border-zinc-200 hover:bg-white rounded-3xl flex items-center justify-center gap-x-2">
+          <i class="fa-solid fa-redo"></i>
+          <span>Retake Quiz</span>
+        </button>
+        <button onclick="window.location.reload()" 
+                class="flex-1 py-4 text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-3xl flex items-center justify-center gap-x-2">
+          <span>Done</span>
+        </button>
+      </div>
+
+      <div class="text-center mt-8 text-xs text-zinc-400">
+        Inspired by Patrick Lencioni & The Table Group’s <em>Six Types of Working Genius</em>. This is an independent educational tool.
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Info Modal -->
+<div id="info-modal" onclick="if (event.target.id === 'info-modal') hideInfoModal()" class="hidden fixed inset-0 bg-black/60 flex items-end md:items-center justify-center z-[100]">
+  <div onclick="event.stopImmediatePropagation()" class="bg-white w-full md:w-[520px] md:rounded-3xl md:m-4 rounded-t-3xl p-6 max-h-[85vh] overflow-auto">
+    <div class="flex justify-between items-center mb-5">
+      <div class="font-semibold text-xl">The Six Types of Working Genius</div>
+      <button onclick="hideInfoModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600">&times;</button>
+    </div>
+    <div class="space-y-5 text-sm">
+      <p class="text-zinc-600">Created by Patrick Lencioni and The Table Group, this model identifies six distinct types of “genius” that people bring to work. Everyone possesses all six to varying degrees, but we each have two where we thrive with energy (Geniuses), two we can perform but that cost energy (Competencies), and two that significantly drain us (Frustrations).</p>
+      
+      <div class="space-y-4 pt-2">
+        <div class="flex gap-3"><span class="font-mono w-6 text-indigo-500 font-bold">WON</span> <span><strong>Wonder</strong> — Curiosity, asking why, seeing possibilities and gaps.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-amber-500 font-bold">INV</span> <span><strong>Invention</strong> — Creating new ideas, solutions, and innovations.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-teal-500 font-bold">DIS</span> <span><strong>Discernment</strong> — Intuition, judgment, sensing what will work.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-rose-500 font-bold">GAL</span> <span><strong>Galvanizing</strong> — Rallying and inspiring others to action.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-emerald-500 font-bold">ENA</span> <span><strong>Enablement</strong> — Supporting others and removing obstacles so they succeed.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-orange-500 font-bold">TEN</span> <span><strong>Tenacity</strong> — Pushing through, finishing, and driving to completion.</span></div>
+      </div>
+      <p class="text-xs text-zinc-400 pt-2">The goal: Spend more time in your Geniuses, protect yourself from Frustrations, and build teams where all six types are present and valued.</p>
+    </div>
+    <button onclick="hideInfoModal()" class="mt-6 w-full py-3 text-sm font-semibold bg-zinc-100 rounded-2xl">Got it</button>
+  </div>
+</div>
+
+<script>
+// Tailwind config
+function initTailwind() {
+  // No extra config needed
+}
+
+// 24 Questions - 4 per type, user-friendly and distinguishing
+const questions = [
+  // Wonder (WON) 1-4
+  {id:1, text:"I love asking 'why' and exploring the deeper reasons or possibilities behind problems and ideas.", cat:"WON"},
+  {id:2, text:"Pondering 'what if' scenarios and questioning assumptions energizes me, even without needing an immediate solution.", cat:"WON"},
+  {id:3, text:"I naturally notice gaps, opportunities, or things that could be improved in almost any situation or process.", cat:"WON"},
+  {id:4, text:"Curiosity-driven exploration and wondering about better ways of doing things is something I genuinely enjoy.", cat:"WON"},
+  
+  // Invention (INV) 5-8
+  {id:5, text:"I get excited and energized when I can create brand new ideas, solutions, or ways of doing things from scratch.", cat:"INV"},
+  {id:6, text:"Coming up with original concepts or innovative approaches is one of the parts of work I enjoy most.", cat:"INV"},
+  {id:7, text:"I thrive when brainstorming fresh possibilities and inventing new processes, products, or methods.", cat:"INV"},
+  {id:8, text:"I often think of creative solutions to problems that others haven’t considered or voiced yet.", cat:"INV"},
+  
+  // Discernment (DIS) 9-12
+  {id:9, text:"I have a strong gut sense or intuition about whether an idea, plan, or decision will actually work in reality.", cat:"DIS"},
+  {id:10, text:"I can quickly judge the quality, feasibility, or potential pitfalls of proposals, strategies, or options.", cat:"DIS"},
+  {id:11, text:"I enjoy evaluating different paths and sensing which one feels right or has the highest chance of success.", cat:"DIS"},
+  {id:12, text:"People often come to me for my opinion because I have good intuition about what will succeed or fail.", cat:"DIS"},
+  
+  // Galvanizing (GAL) 13-16
+  {id:13, text:"I love getting people excited, inspired, and rallied around a vision, goal, or new initiative.", cat:"GAL"},
+  {id:14, text:"Inspiring and motivating others to take action and move forward comes naturally and energizes me.", cat:"GAL"},
+  {id:15, text:"I feel alive when I can galvanize a team or group to get behind an idea and create momentum together.", cat:"GAL"},
+  {id:16, text:"I often find myself being the spark that gets enthusiasm going and helps others see the potential.", cat:"GAL"},
+  
+  // Enablement (ENA) 17-20
+  {id:17, text:"I feel fulfilled when I help others succeed by supporting them, removing obstacles, or assisting with their work.", cat:"ENA"},
+  {id:18, text:"Being the person who enables teammates to do their best work and overcome hurdles gives me real satisfaction.", cat:"ENA"},
+  {id:19, text:"I naturally look for ways to support people around me so they can shine and get important things done.", cat:"ENA"},
+  {id:20, text:"Helping others succeed and removing friction so the team can move forward is something I do well and enjoy.", cat:"ENA"},
+  
+  // Tenacity (TEN) 21-24
+  {id:21, text:"I have a strong internal drive to push through difficulties, obstacles, and finish what I start.", cat:"TEN"},
+  {id:22, text:"Following through on commitments and driving projects all the way to completion is very satisfying for me.", cat:"TEN"},
+  {id:23, text:"I persist even when things get hard, tedious, or discouraging because I hate leaving things unfinished.", cat:"TEN"},
+  {id:24, text:"I am energized by the challenge of overcoming resistance and seeing a task or goal through to the end.", cat:"TEN"}
+];
+
+const typeMeta = {
+  WON: { name: "Wonder", emoji: "🌀", color: "indigo", accent: "#4338ca", short: "Curiosity & Possibility" },
+  INV: { name: "Invention", emoji: "💡", color: "amber", accent: "#d97706", short: "Creativity & New Ideas" },
+  DIS: { name: "Discernment", emoji: "🧠", color: "teal", accent: "#0f766e", short: "Intuition & Judgment" },
+  GAL: { name: "Galvanizing", emoji: "📣", color: "rose", accent: "#e11d48", short: "Inspiration & Momentum" },
+  ENA: { name: "Enablement", emoji: "🤝", color: "emerald", accent: "#059669", short: "Support & Removing Obstacles" },
+  TEN: { name: "Tenacity", emoji: "🏁", color: "orange", accent: "#ea580c", short: "Persistence & Completion" }
+};
+
+const typeDetails = {
+  WON: {
+    genius: "<strong>Wonder</strong> is your genius. You thrive when you can ask big questions, explore possibilities, ponder 'what if', and see gaps or opportunities others miss. You bring curiosity, fresh perspectives, and the ability to challenge assumptions in a way that opens new doors. This is where you feel most alive and energized at work.",
+    howToLeverage: "Seek roles, projects, or meetings where questioning, exploring root causes, and imagining better futures are valued. Share your observations and 'what if' ideas early. Protect time for reflective thinking — it’s not wasted time for you, it’s fuel.",
+    frustration: "Wonder is one of your frustrations. You likely find it draining to be in environments that demand constant execution without space for questioning or exploration. You may feel stifled in highly structured, 'just do it' cultures or when forced to accept things without understanding the 'why'."
+  },
+  INV: {
+    genius: "<strong>Invention</strong> is your genius. You come alive when you get to create new ideas, invent solutions, brainstorm original approaches, and build something from nothing. You have a natural spark for innovation and generating possibilities that didn’t exist before. This is where your energy and creativity flow most freely.",
+    howToLeverage: "Carve out time and permission for ideation and creative problem-solving. Volunteer for projects that require fresh thinking. Share your inventions early — even rough ideas — and find collaborators who can help refine them. You thrive when invention is celebrated, not just execution.",
+    frustration: "Invention is one of your frustrations. You probably feel drained in roles that are purely repetitive, maintenance-oriented, or focused only on optimizing existing systems without room for new ideas. Constantly being asked to 'just implement' without creating can feel stifling and energy-sucking."
+  },
+  DIS: {
+    genius: "<strong>Discernment</strong> is your genius. You have a powerful internal compass and intuition that helps you quickly sense whether an idea, strategy, or decision will work in the real world. You excel at evaluating options, spotting flaws or strengths others miss, and guiding teams toward wise choices. Your judgment is a gift.",
+    howToLeverage: "Position yourself as a trusted evaluator and advisor. Offer your discernment early in projects (before too much momentum builds in the wrong direction). Trust and articulate your gut feelings — they are often right. You add enormous value by preventing costly mistakes and steering toward success.",
+    frustration: "Discernment is one of your frustrations. You may find it exhausting to be in chaotic environments with constant change, poor information, or pressure to make decisions without enough time to evaluate. Being forced to go along with ideas you intuitively know won’t work can be particularly draining."
+  },
+  GAL: {
+    genius: "<strong>Galvanizing</strong> is your genius. You have a natural ability to inspire, rally, and energize people around a vision or goal. You get excited about getting others excited. You spark momentum, create buy-in, and help teams move from idea to action with enthusiasm. This is where you bring infectious energy.",
+    howToLeverage: "Look for opportunities to cast vision, lead kickoffs, or be the voice that gets people on board. You shine in roles that involve influencing, presenting, or mobilizing others. Make sure you have real influence and aren’t just 'cheerleading' for decisions already made without your input."
+    frustration: "Galvanizing is one of your frustrations. You likely feel drained when you have to push people who are resistant or apathetic, or when you’re in highly individualistic or siloed environments where rallying others feels like pulling teeth. Being the constant motivator without support can burn you out."
+  },
+  ENA: {
+    genius: "<strong>Enablement</strong> is your genius. You find deep satisfaction in helping others succeed. You naturally remove obstacles, support teammates, clear roadblocks, and make it easier for people to do their best work. You are often the glue that holds teams together and helps things actually get done through your behind-the-scenes support.",
+    howToLeverage: "Make your enabling visible and valued. Communicate how your support directly contributes to team results. Seek roles where you can be a multiplier for others’ success. You thrive when your enabling is recognized as strategic, not just 'helping out'. Protect yourself from being taken for granted.",
+    frustration: "Enablement is one of your frustrations. You probably feel drained when you’re constantly asked to drop everything to help others while your own work suffers, or when you’re in cutthroat, every-person-for-themselves cultures. Being forced to watch others struggle without being able to help (or being punished for helping) is painful for you."
+  },
+  TEN: {
+    genius: "<strong>Tenacity</strong> is your genius. You have an inner drive to push through obstacles, stay committed, and finish what you start. You bring persistence, follow-through, and the ability to grind when things get hard. You hate leaving things half-done and find real satisfaction in completion and overcoming resistance.",
+    howToLeverage: "Volunteer for projects that need someone to drive them across the finish line. You add huge value in the messy middle and final push. Make sure your tenacity is channeled toward meaningful goals — otherwise it can become frustrating busywork. Celebrate completions publicly.",
+    frustration: "Tenacity is one of your frustrations. You likely feel drained by constant interruptions, shifting priorities, or environments where things are started but never finished. Being forced to abandon projects mid-stream or work in chaotic, non-committal cultures can be deeply frustrating and energy-depleting for you."
+  }
+};
+
+let currentQuestionIndex = 0;
+let answers = {};
+
+// Progress
+function updateProgress() {
+  const total = questions.length;
+  const answered = Object.keys(answers).length;
+  const percent = Math.round((answered / total) * 100);
+  
+  const progressBar = document.getElementById('progress-bar');
+  const progressText = document.getElementById('progress-text');
+  const progressPercent = document.getElementById('progress-percent');
+  
+  if (progressBar) progressBar.style.width = `${percent}%`;
+  if (progressText) progressText.textContent = `${answered} / ${total}`;
+  if (progressPercent) progressPercent.textContent = `${percent}%`;
+}
+
+// Render scale buttons
+function renderScale(questionId) {
+  const container = document.getElementById('scale-container');
+  container.innerHTML = '';
+  
+  for (let i = 1; i <= 7; i++) {
+    const btn = document.createElement('button');
+    btn.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all active:scale-95 ${answers[questionId] === i ? 'bg-indigo-600 text-white border-indigo-600 shadow-inner selected' : 'bg-white border-zinc-200 hover:border-indigo-200 hover:bg-indigo-50 text-zinc-700'}`;
+    btn.innerHTML = `<span>${i}</span>`;
+    btn.onclick = () => selectAnswer(questionId, i, btn);
+    container.appendChild(btn);
+  }
+}
+
+function selectAnswer(qId, score, btnElement) {
+  answers[qId] = score;
+  
+  const container = document.getElementById('scale-container');
+  Array.from(container.children).forEach((b, idx) => {
+    const val = idx + 1;
+    if (val === score) {
+      b.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all bg-indigo-600 text-white border-indigo-600 shadow-inner selected`;
+    } else {
+      b.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all bg-white border-zinc-200 hover:border-indigo-200 hover:bg-indigo-50 text-zinc-700`;
+    }
+  });
+  
+  updateProgress();
+  
+  const nextBtn = document.getElementById('btn-next');
+  if (nextBtn) nextBtn.disabled = false;
+}
+
+// Show current question
+function showQuestion(index) {
+  const q = questions[index];
+  document.getElementById('question-text').innerHTML = q.text;
+  document.getElementById('q-num').textContent = index + 1;
+  
+  renderScale(q.id);
+  
+  const nextBtn = document.getElementById('btn-next');
+  const prevBtn = document.getElementById('btn-prev');
+  
+  if (answers[q.id]) {
+    const container = document.getElementById('scale-container');
+    Array.from(container.children).forEach((b, idx) => {
+      if (idx + 1 === answers[q.id]) {
+        b.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all bg-indigo-600 text-white border-indigo-600 shadow-inner selected`;
+      }
+    });
+    if (nextBtn) nextBtn.disabled = false;
+  } else {
+    if (nextBtn) nextBtn.disabled = true;
+  }
+  
+  if (prevBtn) prevBtn.style.visibility = (index === 0) ? 'hidden' : 'visible';
+  
+  if (nextBtn) {
+    if (index === questions.length - 1) {
+      nextBtn.innerHTML = `<span>Finish Quiz</span> <i class="fa-solid fa-check"></i>`;
+    } else {
+      nextBtn.innerHTML = `<span id="next-text">Continue</span> <i class="fa-solid fa-chevron-right"></i>`;
+    }
+  }
+  
+  updateProgress();
+}
+
+function nextQuestion() {
+  const currentQ = questions[currentQuestionIndex];
+  if (!answers[currentQ.id]) {
+    alert('Please select a response to continue.');
+    return;
+  }
+  
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    showQuestion(currentQuestionIndex);
+  } else {
+    calculateAndShowResults();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    showQuestion(currentQuestionIndex);
+  }
+}
+
+function startQuiz() {
+  document.getElementById('landing-view').classList.add('hidden');
+  document.getElementById('quiz-view').classList.remove('hidden');
+  currentQuestionIndex = 0;
+  answers = {};
+  showQuestion(0);
+  updateProgress();
+}
+
+// Calculate results - top 2 Geniuses, next 2 Competencies, bottom 2 Frustrations
+function calculateResults() {
+  const scores = { WON: 0, INV: 0, DIS: 0, GAL: 0, ENA: 0, TEN: 0 };
+  
+  questions.forEach(q => {
+    if (answers[q.id]) {
+      scores[q.cat] += answers[q.id];
+    }
+  });
+  
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  
+  return {
+    scores,
+    geniuses: [sorted[0][0], sorted[1][0]],
+    geniusesScores: [sorted[0][1], sorted[1][1]],
+    competencies: [sorted[2][0], sorted[3][0]],
+    competenciesScores: [sorted[2][1], sorted[3][1]],
+    frustrations: [sorted[4][0], sorted[5][0]],
+    frustrationsScores: [sorted[4][1], sorted[5][1]]
+  };
+}
+
+function calculateAndShowResults() {
+  const result = calculateResults();
+  
+  document.getElementById('quiz-view').classList.add('hidden');
+  const resultsView = document.getElementById('results-view');
+  resultsView.classList.remove('hidden');
+  
+  // Render two Geniuses
+  renderGeniuses(result);
+  
+  // Render Competencies
+  renderCompetencies(result);
+  
+  // Render Frustrations
+  renderFrustrations(result);
+  
+  // Score bars
+  renderScoreBars(result.scores, result.geniuses, result.frustrations);
+  
+  resultsView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderGeniuses(result) {
+  const container = document.getElementById('geniuses-container');
+  container.innerHTML = '';
+  
+  result.geniuses.forEach((key, idx) => {
+    const meta = typeMeta[key];
+    const details = typeDetails[key];
+    const score = result.geniusesScores[idx];
+    
+    const card = document.createElement('div');
+    card.className = 'result-card bg-white border border-zinc-100 rounded-3xl p-6';
+    card.innerHTML = `
+      <div class="flex items-start gap-x-4">
+        <div class="genius-emoji flex-shrink-0 pt-1">${meta.emoji}</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold tracking-wider text-indigo-500">GENIUS ${idx + 1}</div>
+              <div class="text-2xl font-semibold tracking-tight">${meta.name}</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-zinc-400">SCORE</div>
+              <div class="font-mono text-2xl font-semibold text-indigo-600">${score}<span class="text-sm align-super text-zinc-400">/28</span></div>
+            </div>
+          </div>
+          <div class="mt-4 text-[15px] leading-relaxed text-zinc-600">${details.genius}</div>
+          <div class="mt-4 pt-4 border-t text-sm">
+            <span class="font-semibold text-indigo-600">How to leverage it:</span><br>
+            ${details.howToLeverage}
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderCompetencies(result) {
+  const container = document.getElementById('competencies-container');
+  container.innerHTML = '';
+  
+  result.competencies.forEach((key, idx) => {
+    const meta = typeMeta[key];
+    const score = result.competenciesScores[idx];
+    
+    const div = document.createElement('div');
+    div.className = 'flex items-center gap-x-3 p-3 bg-emerald-50/60 rounded-2xl';
+    div.innerHTML = `
+      <div class="text-2xl w-9 text-center flex-shrink-0">${meta.emoji}</div>
+      <div class="flex-1">
+        <div class="font-semibold">${meta.name}</div>
+        <div class="text-xs text-emerald-600">${meta.short} • ${score}/28</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function renderFrustrations(result) {
+  const container = document.getElementById('frustrations-container');
+  container.innerHTML = '';
+  
+  result.frustrations.forEach((key, idx) => {
+    const meta = typeMeta[key];
+    const details = typeDetails[key];
+    const score = result.frustrationsScores[idx];
+    
+    const div = document.createElement('div');
+    div.className = 'p-4 bg-orange-50/70 rounded-2xl';
+    div.innerHTML = `
+      <div class="flex items-center gap-x-3 mb-2">
+        <div class="text-2xl w-9 text-center flex-shrink-0">${meta.emoji}</div>
+        <div class="flex-1">
+          <div class="font-semibold">${meta.name}</div>
+          <div class="text-xs text-orange-600">${meta.short} • ${score}/28</div>
+        </div>
+      </div>
+      <div class="text-sm text-zinc-600 leading-relaxed">${details.frustration}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function renderScoreBars(scores, geniuses, frustrations) {
+  const container = document.getElementById('score-bars');
+  container.innerHTML = '';
+  
+  const maxScore = 28;
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  
+  sorted.forEach(([key, score]) => {
+    const meta = typeMeta[key];
+    const isGenius = geniuses.includes(key);
+    const isFrustration = frustrations.includes(key);
+    
+    const pct = Math.round((score / maxScore) * 100);
+    
+    let labelExtra = '';
+    if (isGenius) labelExtra = '<span class="ml-2 text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded font-bold">GENIUS</span>';
+    else if (isFrustration) labelExtra = '<span class="ml-2 text-xs px-2 py-0.5 bg-orange-100 text-orange-600 rounded font-bold">FRUSTRATION</span>';
+    else labelExtra = '<span class="ml-2 text-xs px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded font-bold">COMPETENCY</span>';
+    
+    const div = document.createElement('div');
+    div.className = 'flex items-center gap-x-3';
+    div.innerHTML = `
+      <div class="w-8 text-2xl text-center flex-shrink-0">${meta.emoji}</div>
+      <div class="flex-1">
+        <div class="flex justify-between items-baseline mb-1">
+          <div class="font-medium text-sm">${meta.name} ${labelExtra}</div>
+          <div class="font-mono text-xs text-zinc-400">${score}/28</div>
+        </div>
+        <div class="h-2 bg-zinc-100 rounded-full overflow-hidden">
+          <div class="h-2 rounded-full lang-bar" style="width: ${pct}%; background-color: ${meta.accent}"></div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function copyFullResults() {
+  const result = calculateResults();
+  let text = `My WorkGenius Quiz Profile 🧠\n\n`;
+  text += `GENIUSES: ${typeMeta[result.geniuses[0]].name} & ${typeMeta[result.geniuses[1]].name}\n`;
+  text += `COMPETENCIES: ${typeMeta[result.competencies[0]].name} & ${typeMeta[result.competencies[1]].name}\n`;
+  text += `FRUSTRATIONS: ${typeMeta[result.frustrations[0]].name} & ${typeMeta[result.frustrations[1]].name}\n\n`;
+  text += `I just discovered my Working Genius profile! This helps me understand where I thrive, what drains me, and how to build better teams and roles.\n\n`;
+  text += `Take the free quiz: https://joshualoydjamespro-arch.github.io/workgenius-quiz/\n\n`;
+  text += `What are YOUR two Working Geniuses? Let’s compare!`;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Profile copied! Share it with your team or manager.');
+  }).catch(() => {
+    prompt('Copy this text:', text);
+  });
+}
+
+function copyReflections() {
+  const r1 = document.getElementById('reflect-genius').value.trim();
+  const r2 = document.getElementById('reflect-other').value.trim();
+  
+  let text = `My Working Genius Reflections from WorkGenius Quiz\n\n`;
+  text += `1. How I would feel spending more time in my Geniuses:\n${r1 || '(Not yet written)'}\n\n`;
+  text += `2. Colleague/team member & how I can better collaborate:\n${r2 || '(Not yet written)'}\n\n`;
+  text += `— Taken from https://joshualoydjamespro-arch.github.io/workgenius-quiz/`;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Reflections copied! Great for starting conversations with your team.');
+  }).catch(() => {
+    prompt('Copy your reflections:', text);
+  });
+}
+
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-6 py-3 rounded-2xl shadow-2xl text-sm flex items-center gap-x-2 z-[200]`;
+  toast.innerHTML = `<i class="fa-solid fa-check-circle text-emerald-400"></i> <span>${message}</span>`;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.transition = 'all 0.3s ease';
+    toast.style.opacity = '0';
+    setTimeout(() => toast.parentNode.removeChild(toast), 300);
+  }, 2800);
+}
+
+function retakeQuiz() {
+  if (confirm('Start the quiz over? Your current answers and reflections will be lost.')) {
+    document.getElementById('results-view').classList.add('hidden');
+    document.getElementById('landing-view').classList.remove('hidden');
+    answers = {};
+    currentQuestionIndex = 0;
+  }
+}
+
+function showInfoModal() {
+  document.getElementById('info-modal').classList.remove('hidden');
+  document.getElementById('info-modal').classList.add('flex');
+}
+
+function hideInfoModal() {
+  const modal = document.getElementById('info-modal');
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+}
+
+// Keyboard support
+function setupKeyboard() {
+  document.addEventListener('keydown', function(e) {
+    const quizVisible = !document.getElementById('quiz-view').classList.contains('hidden');
+    if (!quizVisible) return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      const nextBtn = document.getElementById('btn-next');
+      if (nextBtn && !nextBtn.disabled) nextQuestion();
+    }
+    if (e.key === 'ArrowLeft') {
+      prevQuestion();
+    }
+    if (['1','2','3','4','5','6','7'].includes(e.key)) {
+      const container = document.getElementById('scale-container');
+      if (container) {
+        const qId = questions[currentQuestionIndex].id;
+        const score = parseInt(e.key);
+        answers[qId] = score;
+        
+        Array.from(container.children).forEach((b, idx) => {
+          if (idx + 1 === score) {
+            b.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all bg-indigo-600 text-white border-indigo-600 shadow-inner selected`;
+          } else {
+            b.className = `scale-btn flex-1 h-12 flex items-center justify-center rounded-2xl border text-lg font-semibold transition-all bg-white border-zinc-200 hover:border-indigo-200 hover:bg-indigo-50 text-zinc-700`;
+          }
+        });
+        updateProgress();
+        document.getElementById('btn-next').disabled = false;
+      }
+    }
+  });
+}
+
+// Initialize
+function initApp() {
+  initTailwind();
+  setupKeyboard();
+  
+  const logo = document.querySelector('header');
+  if (logo) {
+    logo.addEventListener('click', () => {
+      if (!document.getElementById('landing-view').classList.contains('hidden')) return;
+      if (confirm('Return to start screen?')) {
+        document.getElementById('quiz-view').classList.add('hidden');
+        document.getElementById('results-view').classList.add('hidden');
+        document.getElementById('landing-view').classList.remove('hidden');
+      }
+    });
+  }
+  
+  console.log('%c[WorkGenius] Standalone quiz ready. Deployed to GitHub Pages.', 'color:#4338ca');
+}
+
+window.onload = initApp;
+</script>
+</body>
+</html>
