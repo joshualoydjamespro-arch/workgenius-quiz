@@ -54,35 +54,65 @@
         <p class="max-w-md mx-auto text-xl text-zinc-600">Find your two Working Geniuses, two Competencies, and two Frustrations. Understand what energizes you, what drains you, and how to build a more fulfilling career and better teams.</p>
       </div>
 
-      <!-- 6 Types Preview -->
-      <div class="mb-10">
+      <!-- 6 Types Preview with Medium Descriptions -->
+      <div class="mb-8">
         <p class="text-center text-sm font-medium text-zinc-500 mb-4 tracking-wider">THE SIX TYPES OF WORKING GENIUS</p>
-        <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">🌀</div>
-            <div class="text-xs font-semibold text-indigo-600">Wonder</div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <!-- Wonder -->
+          <div onclick="showTypeModal('WON')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">🌀</div>
+              <div class="font-semibold text-lg">Wonder</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of curiosity and possibility. People with Wonder naturally ask “What if?” and spot gaps, opportunities, and unmet potential that others overlook. They live in the questions and the big picture, identifying that something could be better before anyone else has named it. This is the upstream spark of vision and strategic thinking.</p>
           </div>
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">💡</div>
-            <div class="text-xs font-semibold text-amber-600">Invention</div>
+          
+          <!-- Invention -->
+          <div onclick="showTypeModal('INV')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">💡</div>
+              <div class="font-semibold text-lg">Invention</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of creation from scratch. People with Invention thrive on blank pages and the challenge of generating new ideas, solutions, products, or approaches that didn’t exist before. They enjoy ambiguity and the process of turning possibilities into something tangible. This is the creative engine that turns vision into reality.</p>
           </div>
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">🧠</div>
-            <div class="text-xs font-semibold text-teal-600">Discernment</div>
+          
+          <!-- Discernment -->
+          <div onclick="showTypeModal('DIS')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">🧠</div>
+              <div class="font-semibold text-lg">Discernment</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of wise judgment and intuition. People with Discernment have a natural ability to evaluate ideas, plans, and situations and quickly sense what will work, what won’t, and why. They synthesize patterns and provide trustworthy guidance that helps teams avoid wasted effort on the wrong paths.</p>
           </div>
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">📣</div>
-            <div class="text-xs font-semibold text-rose-600">Galvanizing</div>
+          
+          <!-- Galvanizing -->
+          <div onclick="showTypeModal('GAL')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">📣</div>
+              <div class="font-semibold text-lg">Galvanizing</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of inspiration and momentum. People with Galvanizing naturally rally others around a vision or goal, creating buy-in, energy, and collective movement. They turn individual agreement into team action and help good ideas gain traction through clear communication and enthusiasm.</p>
           </div>
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">🤝</div>
-            <div class="text-xs font-semibold text-emerald-600">Enablement</div>
+          
+          <!-- Enablement -->
+          <div onclick="showTypeModal('ENA')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">🤝</div>
+              <div class="font-semibold text-lg">Enablement</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of support and practical help. People with Enablement anticipate what others need to succeed and provide it — removing obstacles, offering resources, encouragement, and behind-the-scenes support. They are often the glue that holds teams and projects together, making everyone else more effective.</p>
           </div>
-          <div class="bg-white rounded-3xl p-4 text-center border border-zinc-100 shadow-sm">
-            <div class="text-3xl mb-1.5">🏁</div>
-            <div class="text-xs font-semibold text-orange-600">Tenacity</div>
+          
+          <!-- Tenacity -->
+          <div onclick="showTypeModal('TEN')" class="bg-white rounded-3xl p-5 border border-zinc-100 shadow-sm cursor-pointer hover:shadow-md hover:border-indigo-200 transition-all">
+            <div class="flex items-center gap-x-3 mb-3">
+              <div class="text-3xl">🏁</div>
+              <div class="font-semibold text-lg">Tenacity</div>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">The genius of persistence and completion. People with Tenacity have the grit to push through obstacles, grind through details, and drive things to the finish line. They ensure that good ideas actually become completed realities, even when the work is unglamorous or difficult.</p>
           </div>
         </div>
+        <p class="text-center text-xs text-zinc-400 mt-3">Click any card above for a deeper look • Every project needs all six</p>
       </div>
 
       <div class="max-w-xs mx-auto">
@@ -94,10 +124,10 @@
         <p class="text-center text-xs text-zinc-400 mt-4">24 quick questions • Instant detailed profile</p>
       </div>
 
-      <div class="mt-10 text-center">
+      <div class="mt-8 text-center">
         <button onclick="showInfoModal()" class="text-sm text-zinc-500 hover:text-zinc-700 flex items-center gap-x-2 mx-auto">
           <i class="fa-solid fa-info-circle"></i>
-          <span>What is the Working Genius model?</span>
+          <span>Learn more about the model</span>
         </button>
       </div>
     </div>
@@ -124,11 +154,12 @@
           <h2 id="question-text" class="question-text font-semibold text-zinc-900 leading-tight"></h2>
         </div>
 
-        <!-- Likert Scale -->
+        <!-- Likert Scale with Neutral -->
         <div class="mb-2">
-          <div class="flex justify-between items-center mb-3 px-1">
-            <div class="text-xs font-medium text-zinc-400">Not at all<br>like me</div>
-            <div class="text-xs font-medium text-zinc-400 text-right">Very much<br>like me</div>
+          <div class="flex justify-between items-center text-xs text-zinc-500 px-1 mb-2">
+            <div>Not at all like me</div>
+            <div class="font-medium text-indigo-600">Neutral</div>
+            <div class="text-right">Very much like me</div>
           </div>
           
           <div id="scale-container" class="grid grid-cols-7 gap-2">
@@ -205,6 +236,18 @@
         </div>
       </div>
 
+      <!-- Medium Descriptions for All Six Types -->
+      <div class="bg-white border border-zinc-100 rounded-3xl p-7 mb-8">
+        <div class="font-semibold text-lg mb-4 flex items-center gap-x-2">
+          <i class="fa-solid fa-book-open text-indigo-500"></i>
+          <span>A Closer Look at All Six Types</span>
+        </div>
+        <p class="text-sm text-zinc-500 mb-5">Here’s a medium-level overview of each type, framed through the lens of your personal profile.</p>
+        <div id="all-types-descriptions" class="space-y-6">
+          <!-- Populated by JS with tailored medium descriptions -->
+        </div>
+      </div>
+
       <!-- Why It Matters -->
       <div class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white rounded-3xl p-7 mb-8">
         <div class="flex items-center gap-x-3 mb-4">
@@ -213,8 +256,7 @@
         </div>
         <div class="text-zinc-200 text-[15px] leading-relaxed space-y-4">
           <p>Everyone has all six types to some degree, but you have <strong>two Geniuses</strong> where you thrive with natural energy and joy, <strong>two Competencies</strong> you can do well but that cost you energy, and <strong>two Frustrations</strong> that drain you significantly.</p>
-          <p class="font-medium">When you spend most of your time in your Geniuses, work feels fulfilling and sustainable. When you’re stuck in your Frustrations, burnout, disengagement, and frustration skyrocket — even if you’re “good” at the task.</p>
-          <p>The model’s power comes from teams: great teams have all six types represented. Knowing your profile (and others’) lets you play to strengths, delegate wisely, communicate needs, and build roles and teams where everyone thrives.</p>
+          <p class="font-medium">When you spend most of your time in your Geniuses, work feels fulfilling and sustainable. When you’re stuck in your Frustrations, burnout and frustration rise — even if you’re “good” at the task. Great teams have all six represented. Knowing your profile (and others’) lets you play to strengths, delegate wisely, and communicate needs clearly.</p>
         </div>
       </div>
 
@@ -224,15 +266,15 @@
           <i class="fa-solid fa-pen-nib text-indigo-500"></i>
           <span>Reflect & Activate</span>
         </div>
-        <p class="text-sm text-zinc-500 mb-5">A powerful mental exercise to turn insight into action.</p>
+        <p class="text-sm text-zinc-500 mb-5">Turn insight into action with these powerful reflection prompts.</p>
 
         <div class="space-y-6">
           <div>
-            <label class="block text-sm font-medium text-zinc-600 mb-2">1. Imagine a typical week or project where you spend most of your time in your <span class="font-semibold text-indigo-600">two Geniuses</span>. How energized, fulfilled, and effective would you feel compared to now?</label>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">1. Imagine spending most of your week in your two Geniuses. How would your energy, creativity, and sense of purpose shift?</label>
             <textarea id="reflect-genius" rows="3" class="w-full border border-zinc-200 focus:border-indigo-300 rounded-2xl p-4 text-sm placeholder:text-zinc-400" placeholder="When I’m in my Geniuses, I feel..."></textarea>
           </div>
           <div>
-            <label class="block text-sm font-medium text-zinc-600 mb-2">2. Think of a key colleague, boss, or team member. What do you suspect are <span class="font-semibold">their</span> two Working Geniuses? How could you adjust how you work together to honor their strengths and protect them from their frustrations?</label>
+            <label class="block text-sm font-medium text-zinc-600 mb-2">2. Think of someone important (partner, colleague, family). What might their Working Geniuses be? How could you partner or communicate differently to honor their strengths?</label>
             <textarea id="reflect-other" rows="3" class="w-full border border-zinc-200 focus:border-indigo-300 rounded-2xl p-4 text-sm placeholder:text-zinc-400" placeholder="I think they thrive in... So I could..."></textarea>
           </div>
         </div>
@@ -264,10 +306,24 @@
       </div>
 
       <div class="text-center mt-8 text-xs text-zinc-400">
-        Inspired by Patrick Lencioni & The Table Group’s <em>Six Types of Working Genius</em>. This is an independent educational tool.
+        Inspired by Patrick Lencioni & The Table Group’s <em>Six Types of Working Genius</em>. This is an independent educational tool with rich, practical language drawn from the model.
       </div>
     </div>
   </main>
+</div>
+
+<!-- Type Detail Modal -->
+<div id="type-modal" onclick="if (event.target.id === 'type-modal') hideTypeModal()" class="hidden fixed inset-0 bg-black/60 flex items-end md:items-center justify-center z-[100]">
+  <div onclick="event.stopImmediatePropagation()" class="bg-white w-full md:w-[520px] md:rounded-3xl md:m-4 rounded-t-3xl p-6 max-h-[85vh] overflow-auto">
+    <div class="flex justify-between items-center mb-4">
+      <div id="type-modal-header" class="flex items-center gap-x-3"></div>
+      <button onclick="hideTypeModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600">&times;</button>
+    </div>
+    <div id="type-modal-body" class="text-sm text-zinc-600 leading-relaxed"></div>
+    <div class="mt-6 pt-4 border-t flex justify-end">
+      <button onclick="hideTypeModal()" class="px-6 py-2 text-sm font-semibold bg-zinc-100 hover:bg-zinc-200 rounded-2xl">Close</button>
+    </div>
+  </div>
 </div>
 
 <!-- Info Modal -->
@@ -278,11 +334,11 @@
       <button onclick="hideInfoModal()" class="text-2xl leading-none text-zinc-400 hover:text-zinc-600">&times;</button>
     </div>
     <div class="space-y-5 text-sm">
-      <p class="text-zinc-600">Created by Patrick Lencioni and The Table Group, this model identifies six distinct types of “genius” that people bring to work. Everyone possesses all six to varying degrees, but we each have two where we thrive with energy (Geniuses), two we can perform but that cost energy (Competencies), and two that significantly drain us (Frustrations).</p>
+      <p class="text-zinc-600">Created by Patrick Lencioni and The Table Group, this model identifies six distinct types of “genius” that every successful project needs. No one person has all six as geniuses. You have two where you thrive with energy (Geniuses), two you can do but that cost energy (Competencies), and two that drain you (Frustrations).</p>
       
       <div class="space-y-4 pt-2">
         <div class="flex gap-3"><span class="font-mono w-6 text-indigo-500 font-bold">WON</span> <span><strong>Wonder</strong> — Curiosity, asking why, seeing possibilities and gaps.</span></div>
-        <div class="flex gap-3"><span class="font-mono w-6 text-amber-500 font-bold">INV</span> <span><strong>Invention</strong> — Creating new ideas, solutions, and innovations.</span></div>
+        <div class="flex gap-3"><span class="font-mono w-6 text-amber-500 font-bold">INV</span> <span><strong>Invention</strong> — Creating new ideas, solutions, and innovations from scratch.</span></div>
         <div class="flex gap-3"><span class="font-mono w-6 text-teal-500 font-bold">DIS</span> <span><strong>Discernment</strong> — Intuition, judgment, sensing what will work.</span></div>
         <div class="flex gap-3"><span class="font-mono w-6 text-rose-500 font-bold">GAL</span> <span><strong>Galvanizing</strong> — Rallying and inspiring others to action.</span></div>
         <div class="flex gap-3"><span class="font-mono w-6 text-emerald-500 font-bold">ENA</span> <span><strong>Enablement</strong> — Supporting others and removing obstacles so they succeed.</span></div>
@@ -300,42 +356,34 @@ function initTailwind() {
   // Ready
 }
 
-// 24 Questions - 4 per type
+// 24 Questions - MIXED ORDER (not grouped by type for better flow)
 const questions = [
-  // Wonder (WON) 1-4
   {id:1, text:"I love asking 'why' and exploring the deeper reasons or possibilities behind problems and ideas.", cat:"WON"},
-  {id:2, text:"Pondering 'what if' scenarios and questioning assumptions energizes me, even without needing an immediate solution.", cat:"WON"},
-  {id:3, text:"I naturally notice gaps, opportunities, or things that could be improved in almost any situation or process.", cat:"WON"},
-  {id:4, text:"Curiosity-driven exploration and wondering about better ways of doing things is something I genuinely enjoy.", cat:"WON"},
-  
-  // Invention (INV) 5-8
   {id:5, text:"I get excited and energized when I can create brand new ideas, solutions, or ways of doing things from scratch.", cat:"INV"},
-  {id:6, text:"Coming up with original concepts or innovative approaches is one of the parts of work I enjoy most.", cat:"INV"},
-  {id:7, text:"I thrive when brainstorming fresh possibilities and inventing new processes, products, or methods.", cat:"INV"},
-  {id:8, text:"I often think of creative solutions to problems that others haven’t considered or voiced yet.", cat:"INV"},
-  
-  // Discernment (DIS) 9-12
   {id:9, text:"I have a strong gut sense or intuition about whether an idea, plan, or decision will actually work in reality.", cat:"DIS"},
-  {id:10, text:"I can quickly judge the quality, feasibility, or potential pitfalls of proposals, strategies, or options.", cat:"DIS"},
-  {id:11, text:"I enjoy evaluating different paths and sensing which one feels right or has the highest chance of success.", cat:"DIS"},
-  {id:12, text:"People often come to me for my opinion because I have good intuition about what will succeed or fail.", cat:"DIS"},
-  
-  // Galvanizing (GAL) 13-16
   {id:13, text:"I love getting people excited, inspired, and rallied around a vision, goal, or new initiative.", cat:"GAL"},
-  {id:14, text:"Inspiring and motivating others to take action and move forward comes naturally and energizes me.", cat:"GAL"},
-  {id:15, text:"I feel alive when I can galvanize a team or group to get behind an idea and create momentum together.", cat:"GAL"},
-  {id:16, text:"I often find myself being the spark that gets enthusiasm going and helps others see the potential.", cat:"GAL"},
-  
-  // Enablement (ENA) 17-20
   {id:17, text:"I feel fulfilled when I help others succeed by supporting them, removing obstacles, or assisting with their work.", cat:"ENA"},
-  {id:18, text:"Being the person who enables teammates to do their best work and overcome hurdles gives me real satisfaction.", cat:"ENA"},
-  {id:19, text:"I naturally look for ways to support people around me so they can shine and get important things done.", cat:"ENA"},
-  {id:20, text:"Helping others succeed and removing friction so the team can move forward is something I do well and enjoy.", cat:"ENA"},
-  
-  // Tenacity (TEN) 21-24
   {id:21, text:"I have a strong internal drive to push through difficulties, obstacles, and finish what I start.", cat:"TEN"},
+  
+  {id:2, text:"Pondering 'what if' scenarios and questioning assumptions energizes me, even without needing an immediate solution.", cat:"WON"},
+  {id:6, text:"Coming up with original concepts or innovative approaches is one of the parts of work I enjoy most.", cat:"INV"},
+  {id:10, text:"I can quickly judge the quality, feasibility, or potential pitfalls of proposals, strategies, or options.", cat:"DIS"},
+  {id:14, text:"Inspiring and motivating others to take action and move forward comes naturally and energizes me.", cat:"GAL"},
+  {id:18, text:"Being the person who enables teammates to do their best work and overcome hurdles gives me real satisfaction.", cat:"ENA"},
   {id:22, text:"Following through on commitments and driving projects all the way to completion is very satisfying for me.", cat:"TEN"},
+  
+  {id:3, text:"I naturally notice gaps, opportunities, or things that could be improved in almost any situation or process.", cat:"WON"},
+  {id:7, text:"I thrive when brainstorming fresh possibilities and inventing new processes, products, or methods.", cat:"INV"},
+  {id:11, text:"I enjoy evaluating different paths and sensing which one feels right or has the highest chance of success.", cat:"DIS"},
+  {id:15, text:"I feel alive when I can galvanize a team or group to get behind an idea and create momentum together.", cat:"GAL"},
+  {id:19, text:"I naturally look for ways to support people around me so they can shine and get important things done.", cat:"ENA"},
   {id:23, text:"I persist even when things get hard, tedious, or discouraging because I hate leaving things unfinished.", cat:"TEN"},
+  
+  {id:4, text:"Curiosity-driven exploration and wondering about better ways of doing things is something I genuinely enjoy.", cat:"WON"},
+  {id:8, text:"I often think of creative solutions to problems that others haven’t considered or voiced yet.", cat:"INV"},
+  {id:12, text:"People often come to me for my opinion because I have good intuition about what will succeed or fail.", cat:"DIS"},
+  {id:16, text:"I often find myself being the spark that gets enthusiasm going and helps others see the potential.", cat:"GAL"},
+  {id:20, text:"Helping others succeed and removing friction so the team can move forward is something I do well and enjoy.", cat:"ENA"},
   {id:24, text:"I am energized by the challenge of overcoming resistance and seeing a task or goal through to the end.", cat:"TEN"}
 ];
 
@@ -348,36 +396,43 @@ const typeMeta = {
   TEN: { name: "Tenacity", emoji: "🏁", color: "orange", accent: "#ea580c", short: "Persistence & Completion" }
 };
 
+// Medium-level descriptions (neutral for landing/popups, tailored in results)
 const typeDetails = {
   WON: {
-    genius: "<strong>Wonder</strong> is your genius. You thrive when you can ask big questions, explore possibilities, ponder 'what if', and see gaps or opportunities others miss. You bring curiosity, fresh perspectives, and the ability to challenge assumptions in a way that opens new doors. This is where you feel most alive and energized at work.",
-    howToLeverage: "Seek roles, projects, or meetings where questioning, exploring root causes, and imagining better futures are valued. Share your observations and 'what if' ideas early. Protect time for reflective thinking — it’s not wasted time for you, it’s fuel.",
-    frustration: "Wonder is one of your frustrations. You likely find it draining to be in environments that demand constant execution without space for questioning or exploration. You may feel stifled in highly structured, 'just do it' cultures or when forced to accept things without understanding the 'why'."
+    overview: "The genius of curiosity and possibility. People with Wonder naturally ask “What if?” and spot gaps, opportunities, and unmet potential that others overlook. They live in the questions and the big picture, identifying that something could be better before anyone else has named it. This is the upstream spark of vision and strategic thinking.",
+    genius: "Wonder is one of your Geniuses — you thrive here with natural energy and joy. You naturally ponder possibilities, ask insightful questions, and see opportunities others miss. This is your superpower spark. Lean into it heavily and protect time for open exploration.",
+    competency: "Wonder is a Competency for you — you can ponder possibilities and ask good questions when needed, and it serves you well as a tool. However, it requires more conscious effort and doesn’t energize you the same way your Geniuses do. Use it strategically rather than as your primary mode.",
+    frustration: "Wonder is a Frustration for you — constant open-ended questioning, exploring 'what ifs,' or challenging assumptions without clear direction tends to drain your energy. This is clarity, not a flaw. Minimize prolonged time here and partner with others who bring strong Wonder."
   },
   INV: {
-    genius: "<strong>Invention</strong> is your genius. You come alive when you get to create new ideas, invent solutions, brainstorm original approaches, and build something from nothing. You have a natural spark for innovation and generating possibilities that didn’t exist before. This is where your energy and creativity flow most freely.",
-    howToLeverage: "Carve out time and permission for ideation and creative problem-solving. Volunteer for projects that require fresh thinking. Share your inventions early — even rough ideas — and find collaborators who can help refine them. You thrive when invention is celebrated, not just execution.",
-    frustration: "Invention is one of your frustrations. You probably feel drained in roles that are purely repetitive, maintenance-oriented, or focused only on optimizing existing systems without room for new ideas. Constantly being asked to 'just implement' without creating can feel stifling and energy-sucking."
+    overview: "The genius of creation from scratch. People with Invention thrive on blank pages and the challenge of generating new ideas, solutions, products, or approaches that didn’t exist before. They enjoy ambiguity and the process of turning possibilities into something tangible. This is the creative engine that turns vision into reality.",
+    genius: "Invention is one of your Geniuses — you thrive here with natural energy and joy. You come alive creating new ideas, solutions, and things from scratch. This is your creative engine. Protect time for ideation and early prototyping.",
+    competency: "Invention is a Competency for you — you can generate new ideas and solutions when the situation calls for it, and you do it competently. However, it requires more effort and doesn’t bring the same natural spark as your Geniuses. Use it when it serves a larger purpose.",
+    frustration: "Invention is a Frustration for you — generating brand-new ideas from a completely blank slate or long unstructured brainstorming sessions tends to drain your energy. This is clarity, not a flaw. Partner with strong Inventors and bring your other strengths to refine and champion their best ideas."
   },
   DIS: {
-    genius: "<strong>Discernment</strong> is your genius. You have a powerful internal compass and intuition that helps you quickly sense whether an idea, strategy, or decision will work in the real world. You excel at evaluating options, spotting flaws or strengths others miss, and guiding teams toward wise choices. Your judgment is a gift.",
-    howToLeverage: "Position yourself as a trusted evaluator and advisor. Offer your discernment early in projects (before too much momentum builds in the wrong direction). Trust and articulate your gut feelings — they are often right. You add enormous value by preventing costly mistakes and steering toward success.",
-    frustration: "Discernment is one of your frustrations. You may find it exhausting to be in chaotic environments with constant change, poor information, or pressure to make decisions without enough time to evaluate. Being forced to go along with ideas you intuitively know won’t work can be particularly draining."
+    overview: "The genius of wise judgment and intuition. People with Discernment have a natural ability to evaluate ideas, plans, and situations and quickly sense what will work, what won’t, and why. They synthesize patterns and provide trustworthy guidance that helps teams avoid wasted effort on the wrong paths.",
+    genius: "Discernment is one of your Geniuses — you thrive here with natural energy and joy. You have elite intuitive judgment and quickly sense what will work. This wisdom is incredibly valuable. Use it to sharpen ideas and guide decisions.",
+    competency: "Discernment is a Competency for you — you can evaluate ideas and sense what will work when needed. It’s a useful and reliable tool, but it doesn’t energize you the same way your Geniuses do. Apply it strategically.",
+    frustration: "Discernment is a Frustration for you — being in constant evaluation or judgment mode, or feeling pressure to decide without enough time to sense what’s right, tends to drain your energy. This is clarity, not a flaw. Trust others’ discernment when it’s their strength and focus your energy where it flows best."
   },
   GAL: {
-    genius: "<strong>Galvanizing</strong> is your genius. You have a natural ability to inspire, rally, and energize people around a vision or goal. You get excited about getting others excited. You spark momentum, create buy-in, and help teams move from idea to action with enthusiasm. This is where you bring infectious energy.",
-    howToLeverage: "Look for opportunities to cast vision, lead kickoffs, or be the voice that gets people on board. You shine in roles that involve influencing, presenting, or mobilizing others. Make sure you have real influence and aren’t just cheerleading for decisions already made without your input.",
-    frustration: "Galvanizing is one of your frustrations. You likely feel drained when you have to push people who are resistant or apathetic, or when you’re in highly individualistic or siloed environments where rallying others feels like pulling teeth. Being the constant motivator without support can burn you out."
+    overview: "The genius of inspiration and momentum. People with Galvanizing naturally rally others around a vision or goal, creating buy-in, energy, and collective movement. They turn individual agreement into team action and help good ideas gain traction through clear communication and enthusiasm.",
+    genius: "Galvanizing is one of your Geniuses — you thrive here with natural energy and joy. You naturally inspire and rally people around ideas and goals. This momentum-building ability is powerful. Use it to turn vision into shared action.",
+    competency: "Galvanizing is a Competency for you — you can rally people and create momentum when needed, especially around ideas you believe in. It’s a useful skill, but it requires more effort and doesn’t energize you the same way your Geniuses do. Use it intentionally.",
+    frustration: "Galvanizing is a Frustration for you — constantly trying to get resistant or apathetic people excited, or being in environments where rallying others feels like pulling teeth, tends to drain your energy. This is clarity, not a flaw. Partner with strong Galvanizers and focus on providing the vision they can rally around."
   },
   ENA: {
-    genius: "<strong>Enablement</strong> is your genius. You find deep satisfaction in helping others succeed. You naturally remove obstacles, support teammates, clear roadblocks, and make it easier for people to do their best work. You are often the glue that holds teams together and helps things actually get done through your behind-the-scenes support.",
-    howToLeverage: "Make your enabling visible and valued. Communicate how your support directly contributes to team results. Seek roles where you can be a multiplier for others’ success. You thrive when your enabling is recognized as strategic, not just 'helping out'. Protect yourself from being taken for granted.",
-    frustration: "Enablement is one of your frustrations. You probably feel drained when you’re constantly asked to drop everything to help others while your own work suffers, or when you’re in cutthroat, every-person-for-themselves cultures. Being forced to watch others struggle without being able to help (or being punished for helping) is painful for you."
+    overview: "The genius of support and practical help. People with Enablement anticipate what others need to succeed and provide it — removing obstacles, offering resources, encouragement, and behind-the-scenes support. They are often the glue that holds teams and projects together, making everyone else more effective.",
+    genius: "Enablement is one of your Geniuses — you thrive here with natural energy and joy. You anticipate needs, remove obstacles, and help others succeed. This supportive strength multiplies everyone else’s capacity. Own it and let it shine.",
+    competency: "Enablement is a Competency for you — you can support others and remove obstacles when needed. It’s a valuable contribution, but it requires more conscious effort and doesn’t energize you the same way your Geniuses do. Use it strategically and with boundaries.",
+    frustration: "Enablement is a Frustration for you — constantly anticipating others’ needs, removing obstacles for them, or providing ongoing support that goes unseen tends to drain your energy significantly. This is clarity, not a flaw. Minimize time here, delegate where possible, and partner with strong Enablers."
   },
   TEN: {
-    genius: "<strong>Tenacity</strong> is your genius. You have an inner drive to push through obstacles, stay committed, and finish what you start. You bring persistence, follow-through, and the ability to grind when things get hard. You hate leaving things half-done and find real satisfaction in completion and overcoming resistance.",
-    howToLeverage: "Volunteer for projects that need someone to drive them across the finish line. You add huge value in the messy middle and final push. Make sure your tenacity is channeled toward meaningful goals — otherwise it can become frustrating busywork. Celebrate completions publicly.",
-    frustration: "Tenacity is one of your frustrations. You likely feel drained by constant interruptions, shifting priorities, or environments where things are started but never finished. Being forced to abandon projects mid-stream or work in chaotic, non-committal cultures can be deeply frustrating and energy-depleting for you."
+    overview: "The genius of persistence and completion. People with Tenacity have the grit to push through obstacles, grind through details, and drive things to the finish line. They ensure that good ideas actually become completed realities, even when the work is unglamorous or difficult.",
+    genius: "Tenacity is one of your Geniuses — you thrive here with natural energy and joy. You have the persistence to push through obstacles and finish what you start. This completion strength turns ideas into results. Celebrate it.",
+    competency: "Tenacity is a Competency for you — you can push through and drive to completion when needed, especially when it serves something meaningful. It’s doable, but it requires more effort and doesn’t energize you the same way your Geniuses do. Use it with clear purpose.",
+    frustration: "Tenacity is a Frustration for you — pushing through repetitive, detail-heavy, or unglamorous grind without creative spark tends to drain your energy significantly. This is clarity, not a flaw. Minimize prolonged time in pure grind mode and partner with strong Tenacity people for the finish line."
   }
 };
 
@@ -535,6 +590,7 @@ function calculateAndShowResults() {
   renderCompetencies(result);
   renderFrustrations(result);
   renderScoreBars(result.scores, result.geniuses, result.frustrations);
+  renderAllTypesDescriptions(result);
   
   resultsView.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -559,16 +615,12 @@ function renderGeniuses(result) {
               <div class="text-xs font-bold tracking-wider text-indigo-500">GENIUS ${idx + 1}</div>
               <div class="text-2xl font-semibold tracking-tight">${meta.name}</div>
             </div>
-              <div class="text-right">
+            <div class="text-right">
               <div class="text-xs text-zinc-400">SCORE</div>
               <div class="font-mono text-2xl font-semibold text-indigo-600">${score}<span class="text-sm align-super text-zinc-400">/28</span></div>
             </div>
           </div>
           <div class="mt-4 text-[15px] leading-relaxed text-zinc-600">${details.genius}</div>
-          <div class="mt-4 pt-4 border-t text-sm">
-            <span class="font-semibold text-indigo-600">How to leverage it:</span><br>
-            ${details.howToLeverage}
-          </div>
         </div>
       </div>
     `;
@@ -582,16 +634,20 @@ function renderCompetencies(result) {
   
   result.competencies.forEach((key, idx) => {
     const meta = typeMeta[key];
+    const details = typeDetails[key];
     const score = result.competenciesScores[idx];
     
     const div = document.createElement('div');
-    div.className = 'flex items-center gap-x-3 p-3 bg-emerald-50/60 rounded-2xl';
+    div.className = 'p-4 bg-emerald-50/70 rounded-2xl';
     div.innerHTML = `
-      <div class="text-2xl w-9 text-center flex-shrink-0">${meta.emoji}</div>
-      <div class="flex-1">
-        <div class="font-semibold">${meta.name}</div>
-        <div class="text-xs text-emerald-600">${meta.short} • ${score}/28</div>
+      <div class="flex items-center gap-x-3 mb-2">
+        <div class="text-2xl w-9 text-center flex-shrink-0">${meta.emoji}</div>
+        <div class="flex-1">
+          <div class="font-semibold">${meta.name}</div>
+          <div class="text-xs text-emerald-600">${meta.short} • ${score}/28 • Competency</div>
+        </div>
       </div>
+      <div class="text-sm text-zinc-600 leading-relaxed">${details.competency}</div>
     `;
     container.appendChild(div);
   });
@@ -613,7 +669,7 @@ function renderFrustrations(result) {
         <div class="text-2xl w-9 text-center flex-shrink-0">${meta.emoji}</div>
         <div class="flex-1">
           <div class="font-semibold">${meta.name}</div>
-          <div class="text-xs text-orange-600">${meta.short} • ${score}/28</div>
+          <div class="text-xs text-orange-600">${meta.short} • ${score}/28 • Frustration</div>
         </div>
       </div>
       <div class="text-sm text-zinc-600 leading-relaxed">${details.frustration}</div>
@@ -654,6 +710,48 @@ function renderScoreBars(scores, geniuses, frustrations) {
           <div class="h-2 rounded-full lang-bar" style="width: ${pct}%; background-color: ${meta.accent}"></div>
         </div>
       </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// New function: Render medium descriptions for all six types, tailored to category
+function renderAllTypesDescriptions(result) {
+  const container = document.getElementById('all-types-descriptions');
+  container.innerHTML = '';
+  
+  const sorted = Object.entries(result.scores).sort((a, b) => b[1] - a[1]);
+  
+  sorted.forEach(([key, score]) => {
+    const meta = typeMeta[key];
+    const details = typeDetails[key];
+    const isGenius = result.geniuses.includes(key);
+    const isFrustration = result.frustrations.includes(key);
+    
+    let categoryLabel = '';
+    let tailoredText = '';
+    if (isGenius) {
+      categoryLabel = '<span class="ml-2 text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded font-bold">YOUR GENIUS</span>';
+      tailoredText = details.genius;
+    } else if (isFrustration) {
+      categoryLabel = '<span class="ml-2 text-xs px-2 py-0.5 bg-orange-100 text-orange-600 rounded font-bold">YOUR FRUSTRATION</span>';
+      tailoredText = details.frustration;
+    } else {
+      categoryLabel = '<span class="ml-2 text-xs px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded font-bold">YOUR COMPETENCY</span>';
+      tailoredText = details.competency;
+    }
+    
+    const div = document.createElement('div');
+    div.className = 'p-4 border border-zinc-100 rounded-2xl';
+    div.innerHTML = `
+      <div class="flex items-center gap-x-3 mb-2">
+        <div class="text-2xl">${meta.emoji}</div>
+        <div>
+          <div class="font-semibold text-lg">${meta.name} ${categoryLabel}</div>
+          <div class="text-xs text-zinc-400">${score}/28</div>
+        </div>
+      </div>
+      <div class="text-sm text-zinc-600 leading-relaxed">${tailoredText}</div>
     `;
     container.appendChild(div);
   });
@@ -713,6 +811,27 @@ function retakeQuiz() {
   }
 }
 
+function showTypeModal(typeKey) {
+  const modal = document.getElementById('type-modal');
+  const header = document.getElementById('type-modal-header');
+  const body = document.getElementById('type-modal-body');
+  
+  const meta = typeMeta[typeKey];
+  const details = typeDetails[typeKey];
+  
+  header.innerHTML = `<div class="text-4xl">${meta.emoji}</div><div><div class="font-semibold text-2xl">${meta.name}</div><div class="text-xs text-zinc-500">${meta.short}</div></div>`;
+  body.innerHTML = `<p class="mb-4">${details.overview}</p><p class="text-xs text-zinc-400 italic">This is a neutral overview. Your quiz results will show how it fits your unique profile.</p>`;
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function hideTypeModal() {
+  const modal = document.getElementById('type-modal');
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+}
+
 function showInfoModal() {
   document.getElementById('info-modal').classList.remove('hidden');
   document.getElementById('info-modal').classList.add('flex');
@@ -763,7 +882,7 @@ function initApp() {
   initTailwind();
   setupKeyboard();
   
-  // Robust Start button using event listener (more reliable than inline onclick)
+  // Robust Start button
   const startBtn = document.getElementById('start-btn');
   if (startBtn) {
     startBtn.addEventListener('click', function(e) {
@@ -772,7 +891,7 @@ function initApp() {
     });
   }
   
-  // Logo click to return to start (for convenience)
+  // Logo click to return to start
   const logo = document.querySelector('header');
   if (logo) {
     logo.addEventListener('click', () => {
@@ -785,7 +904,7 @@ function initApp() {
     });
   }
   
-  console.log('%c[WorkGenius] App initialized successfully. Start button is ready.', 'color:#4338ca');
+  console.log('%c[WorkGenius] App initialized with mixed questions, neutral scale label, medium descriptions on landing & results.', 'color:#4338ca');
 }
 
 // Boot
